@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stripe/stripe-php": "^6.4",
+        "voku/anti-xss": "^2.2"
+    }
+}
