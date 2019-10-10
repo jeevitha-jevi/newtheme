@@ -101,12 +101,12 @@
 
 
 <div class="kt-portlet">
-<div class="kt-portlet__head kt-portlet__head--lg">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;"> 
 <div class="kt-portlet__head-label">
 <span class="kt-portlet__head-icon">
 <i class="kt-font-brand flaticon2-line-chart"></i>
 </span>
-<h3 class="kt-portlet__head-title">
+<h3 class="kt-portlet__head-title" style="color:white;">
 My Audits
 </h3>
 </div>

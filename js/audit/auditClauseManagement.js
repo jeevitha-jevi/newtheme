@@ -1,34 +1,4 @@
-/*$(document).ready(function() { $.fn.dataTable.ext.errMode = 'none'; });*/
-$(document).ready(function () {
-    //debugger;
-      
-  /*$('#report').DataTable( {
-        dom: 'Bfrtip',
-        "ordering": false,
-        buttons: [
-             'csv', 'excel', 'pdf', 'print'
-        ]
-    } );*/
-    /*var dat={
-        'id':('#auditId').val()
-    };
-$.ajax({
-        type: "POST",
-        url: "/newtheme/php/auditEndDate.php",
-        data: dat,
-        success:setDate
-    });*/
-     $(".datepickerClass").each(function() {
-        $(this).datepicker({
-            dateFormat: "yy-mm-dd",
-            minDate: 0,
-            maxDate: 18,
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "2017:2099"            
-        });
-    });
-});
+
 function setDate(){
 var currentDate = new Date();
 //$(".datepicker").datepicker("setDate",currentDate); 

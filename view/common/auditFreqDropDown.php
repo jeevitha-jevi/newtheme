@@ -22,38 +22,38 @@ button#weekly:focus
     background:olive;
 }
 </style>
-<div class="form-group" >
-    <div class="row">
-      <div class="col-md-10">
-     <label>Repeat(Optional), For adhoc audits click plan directly</label>
-   </div>
- </div>
+<div class="kt-radio-list">
  <fieldset id="frequency">
  <div class="row">
 
   <div class="col-md-2">
-   <label class="radio-inline form-control" style="background:#DF4974;" >
-      <input type="radio" name="frequency" value="weekly" class="deselectRadioButton">Weekly
+  <label class="kt-radio kt-radio--solid kt-radio--primary">
+<input type="radio" name="frequency" value="weekly">Weekly
+      <span></span>
     </label>
   </div>
   <div class="col-md-2">
-    <label class="radio-inline form-control" style="background: #6F96EA;" >
-      <input type="radio" name="frequency" value="monthly" class="deselectRadioButton" >Monthly
+      <label class="kt-radio kt-radio--solid kt-radio--danger">
+      <input type="radio" name="frequency" value="monthly">Monthly
+      <span></span>
     </label>
   </div>
   <div class="col-md-2">
-    <label class="radio-inline form-control" style="background: #75D8CF;">
-      <input type="radio" name="frequency" value="quarterly" class="deselectRadioButton">Quarterly
+     <label class="kt-radio kt-radio--solid kt-radio--warning">
+      <input type="radio" name="frequency" value="quarterly">Quarterly
+      <span></span>
     </label>
   </div>
   <div class="col-md-2">
-    <label class="radio-inline form-control" style="background: #78BF6D;" >
-      <input type="radio" name="frequency" value="yearly" class="deselectRadioButton">Yearly
+     <label class="kt-radio kt-radio--solid kt-radio--info">
+      <input type="radio" name="frequency" value="yearly">Yearly
+      <span></span>
     </label>
   </div>
   <div class="col-md-2">
-    <label class="radio-inline form-control" style="background: #f47673;" >
-      <input type="radio" name="frequency" value="once" class="deselectRadioButton">Once
+     <label class="kt-radio kt-radio--solid kt-radio--success">
+      <input type="radio" name="frequency" value="once">Once
+      <span></span>
     </label>
   </div>
   <input type="hidden" id="auditFreq" value="once" >

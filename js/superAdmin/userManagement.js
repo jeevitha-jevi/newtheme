@@ -7,7 +7,7 @@ $(document).ready(function () {
     $.ajax({
         dataType: "json",
         type:"POST",
-        url: "/freshgrc/php/user/userlist.php",
+        url: "/newtheme/php/user/userlist.php",
         data: data,
         success: success
     });
@@ -127,7 +127,7 @@ function manageUser() {
     var userDatails = getUserDetailsFromModal();
     $.ajax({
         type: "POST",
-        url: "/freshgrc/php/user/manageUser.php",
+        url: "/newtheme/php/user/manageUser.php",
         data: userDatails,
     });
     location.reload();
@@ -138,7 +138,7 @@ else
 
     $.ajax({
         type: "POST",
-        url: "/freshgrc/php/user/manageUser.php",
+        url: "/newtheme/php/user/manageUser.php",
         data: userDatails,
         success:userProfileCreate
     });
@@ -152,7 +152,7 @@ function userProfileCreate(data){
 
      $.ajax({
         type: "POST",
-        url: "/freshgrc/php/user/manageUserProfile.php",
+        url: "/newtheme/php/user/manageUserProfile.php",
         data: userDetails
     }).done(function (data) {
         location.reload();
@@ -167,7 +167,7 @@ function deleteUser() {
     }
     $.ajax({
         type: "POST",
-        url: "/freshgrc/php/user/manageUser.php",
+        url: "/newtheme/php/user/manageUser.php",
         data: userDetails
     }).done(function (data) {
         location.reload();

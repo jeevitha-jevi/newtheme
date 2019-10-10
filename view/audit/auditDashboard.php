@@ -143,12 +143,7 @@
 <img src="assets/media/client-logos/fixnix.png" alt="">
 </div>
 <div class="kt-widget4__info">
-<a href="#" class="kt-widget4__title">
-Phyton
-</a>    
-<span class="kt-widget4__sub">
-A Programming Language
-</span> 
+
 </div>
 <span class="kt-widget4__ext">
 <span class="kt-widget4__number kt-font-danger">+$17</span>
@@ -159,12 +154,8 @@ A Programming Language
 <img src="assets/media/client-logos/logo1.png" alt="">
 </div>
 <div class="kt-widget4__info">
-<a href="#" class="kt-widget4__title">
-FlyThemes  
-</a> 
-<span class="kt-widget4__sub">
-A Let's Fly Fast Again Language
-</span> 
+
+
 </div>
 <span class="kt-widget4__ext">
 <span class="kt-widget4__number kt-font-danger">+$300</span>
@@ -175,12 +166,7 @@ A Let's Fly Fast Again Language
 <img src="assets/media/client-logos/logo2.png" alt="">
 </div>
 <div class="kt-widget4__info">
-<a href="#" class="kt-widget4__title">
-AirApp  
-</a> 
-<span class="kt-widget4__sub">
-Awesome App For Project Management
-</span> 
+
 </div>
 <span class="kt-widget4__ext">
 <span class="kt-widget4__number kt-font-danger">+$6700</span>

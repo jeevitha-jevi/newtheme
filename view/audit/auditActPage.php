@@ -307,16 +307,24 @@ function tabledata($clause){
 
 
 <div class="kt-portlet">
-<div class="kt-portlet__head kt-portlet__head--lg">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;">
 <div class="kt-portlet__head-label">
 <span class="kt-portlet__head-icon">
 <i class="kt-font-brand flaticon2-line-chart"></i>
 </span>
-<h3 class="kt-portlet__head-title">
-My Audits
+<h3 class="kt-portlet__head-title" style="color: white;">
+<?php echo $auditTitle?>
 </h3>
 </div>
+  <?php if($_SESSION['user_role'] == 'auditee') {?>
+                <div class="row">
+                <div class="col-md-5" style="margin-top: 10px;"><button class="btn btn-danger" ata-spinner-color="#333" onclick="saveAllChecklists(allClauses,true)" >
+                </i>Draft </button> </div>
+                <!-- <div class="co1-md-2"></div> -->
 
+                <div class="col-md-7" style="margin-top: 10px;"> <button  class="btn btn-success" data-spinner-color="#333" style="float:right;margin-bottom: 19px;" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)"  <?php if($workingStatus!="capa pending") echo "style='display:none'"  ?>>Respond</button> </div>
+              </div>
+            <?php }?>
 </div>
 
 <div class="kt-portlet__body">
@@ -334,15 +342,7 @@ My Audits
             <?php }?>
             
                
-              <?php if($_SESSION['user_role'] == 'auditee') {?>
-                <div class="row">
-                <div class="col-md-11" ><button class="btn btn-danger" ata-spinner-color="#333" style="float:right;margin-bottom: 19px;" onclick="saveAllChecklists(allClauses,true)" >
-                </i>Draft </button> </div>
-                <!-- <div class="co1-md-2"></div> -->
-
-                <div class="col-md-1" style="padding-left:0px"> <button  class="btn btn-success" data-spinner-color="#333" style="float:right;margin-bottom: 19px;" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)"  <?php if($workingStatus!="capa pending") echo "style='display:none'"  ?>>Respond</button> </div>
-              </div>
-            <?php }?>
+            
 
 <?php 
  foreach($allClauses as $clauses)

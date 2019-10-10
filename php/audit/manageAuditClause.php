@@ -1,15 +1,12 @@
 <?php
 require_once __DIR__.'/auditClauseManager.php';
-require_once __DIR__.'/auditMailManager.php';
-
 function manage(){
     $manager = new AuditClauseManager();
-    $mailManager=new auditMailManager();
     switch ($_POST['action']){
         case 'saveClause' :
             $auditClauseData = getDataFromRequest();
             $manager->create($auditClauseData);
-            $mailManager->sendKickOffMail($auditClauseData);
+           
             break; 
         case 'saveAuditChecklist' :
             $auditClauseData = getAuditCklDataFromReq();

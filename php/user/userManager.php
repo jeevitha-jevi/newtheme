@@ -37,13 +37,23 @@ class UserManager {
 
     
     public function getAllUsers($companyId){
-        $sql = 'SELECT u.id, u.first_name as firstName, u.last_name as lastName, u.email, r.name as role,r.id as roleId from user u, role r, user_role ur, company c where ur.user_id = u.id and ur.role_id = r.id and u.company_id = c.id and c.id=?';
+        $sql = 'SELECT u.id as id, u.first_name as firstName, u.last_name as lastName, u.email,u.created_at,u.company_id, r.name as role,r.id as roleId from user u, role r, user_role ur, company c where ur.user_id = u.id and ur.role_id = r.id and u.company_id = c.id and c.id=7';
         $paramArray=array();
         $paramArray[]=$companyId;
         $dbOps = new DBOperations();
         return $dbOps->fetchData($sql,'i',$paramArray);
     }
     
+     
+     public function getAllUser($var){
+
+        $sql = 'SELECT u.id as id, u.first_name as firstName, u.last_name as lastName, u.email,u.created_at,u.company_id, r.name as role,r.id as roleId from user u, role r, user_role ur, company c where ur.user_id = u.id and ur.role_id = r.id and u.company_id = c.id and c.id=7 and u.id=?';
+        $paramArray=array();
+        $paramArray[]=$var;
+        $dbOps = new DBOperations();
+        return $dbOps->fetchData($sql,'i',$paramArray);
+    }
+     
     public function createUserData($userData){
         $this->createUser($userData);
         $createdUser = $this->getUserByEmail($userData->email);

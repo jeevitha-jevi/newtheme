@@ -11,19 +11,18 @@
     $allAuditorss=array();
     
    foreach($allAuditors as $auditors)
-	{
-	$userManager = new UserManager();
-	array_push($allAuditorss,$userManager->getAuditorById($auditors));
-	}
-	
+  {
+  $userManager = new UserManager();
+  array_push($allAuditorss,$userManager->getAuditorById($auditors));
+  }
+  
 ?>
 
 <div class="form-group">
     <div class="col-md-12" style="margin-top: 0px;">
     <label >Auditor</label>        
-        <div class="input-group select2-bootstrap-prepend">
-            
-            <select id="auditor<?php echo $clause['clauseId'] ?>" name="auditorDropDown" class="form-control">
+      
+            <select id="auditor<?php echo $clause['clauseId'] ?>" name="auditorDropDown" class="form-control select2" multiple>
           <option></option>
              <?php foreach($allAuditorss as $auditors){
             foreach($auditors as $auditor)
@@ -34,7 +33,6 @@
            <?php } }?>
         </select>
  
-             
+          
         </div>
     </div>
-</div>

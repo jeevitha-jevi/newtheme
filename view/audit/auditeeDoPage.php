@@ -189,16 +189,16 @@ function tabledata($clause){
                 ?>
                     
                <?php $observation=$checklist['auditChecklistForThisCklId']['auditee_comment'] ?>
-                <!-- <textarea placeholder="Auditee Comments" style="border:1px solid rgba(197, 214, 222, .7); border-radius:4px; height:34px" maxlength="5000" rows="1" id="<?php echo 'auditee_comments'.$checklist['checklistId']?>" <?php if($GLOBALS['workingStatus']!="perform pending") echo 'disabled="disabled"'?> ><?php echo htmlspecialchars($observation); ?></textarea> -->
-                <a><i id="myBtn<?php echo $checklist['checklistId'] ?>" class="fa fa-comment"onclick="scoreChlkComment(<?php echo $checklist['checklistId'] ?>)" style="<?php if($observation==""){ echo "color:#337ab7;"; } else {echo "color:green;";}?> font-size: 25px; margin-top: 20px;" data-toggle="tooltip" title="comment"></i></a>
+              
+                <a><i id="myBtn<?php echo $checklist['checklistId'] ?>" class="fa fa-comment"onclick="scoreChlkComment(<?php echo $checklist['checklistId'] ?>)" style="<?php if($observation==""){ echo "color:#337ab7;"; } else {echo "color:green;";}?> font-size: 25px;color: red;" data-toggle="tooltip" title="comment"></i></a>
 
                     <div id="chlkComment<?php echo $checklist['checklistId'] ?>" class="modal">
 
-                    <div class="modal-content">
-                    <span class="close" style="width: 25px;margin-top: -12px;margin-right: -12px;height: 23px;" onclick="hidechlkComment(<?php echo $checklist['checklistId'] ?>)">&times;</span> <textarea rows="3" id="<?php echo 'auditee_comments'.$checklist['checklistId']?>" <?php if($GLOBALS['workingStatus']!="perform pending") echo 'disabled="disabled"'?> ><?php echo htmlspecialchars($observation); ?></textarea>
+                    <div class="modal-content" style="margin-top: 20%;width: 20%;margin-left: 55%;">
+                    <span class="close" onclick="hidechlkComment(<?php echo $checklist['checklistId'] ?>)">&times;</span> <textarea rows="3" id="<?php echo 'auditee_comments'.$checklist['checklistId']?>" <?php if($GLOBALS['workingStatus']!="perform pending") echo 'disabled="disabled"'?> ><?php echo htmlspecialchars($observation); ?></textarea>
                     </div>
                     </div>
-                <input type="text" class="fileLoader" id="<?php echo 'userFile'.$checklist['checklistId'] ?>" onchange="fileUpload(<?php echo $checklist['checklistId'] ?>)">
+           <!--      <input type="text" class="fileLoader" id="<?php echo 'userFile'.$checklist['checklistId'] ?>" onchange="fileUpload(<?php echo $checklist['checklistId'] ?>)"> -->
                 <?php if($checklist['auditChecklistForThisCklId']['file_name']==""){ ?>
                 <a><i class="fa fa-paperclip" type="file" onclick="openfileDialog(<?php echo $checklist['checklistId'] ?>);" name="files" title="Load File" aria-hidden="true" style="color: <?php if($checklist['auditChecklistForThisCklId']['file_name']=="") {echo"#337ab7;";} else{ echo"green;";} ?> font-size: 25px; margin-top: 20px;"></i></a>
                 <?php } ?>
@@ -282,7 +282,7 @@ function tabledata($clause){
 <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 
- 
+ <link href="assets/toggleButton/bootstrap-toggle.min.css" rel="stylesheet" type="text/css" />
   
                     
    <link href="./assets/css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -310,16 +310,28 @@ function tabledata($clause){
 
 
 <div class="kt-portlet">
-<div class="kt-portlet__head kt-portlet__head--lg">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;">
 <div class="kt-portlet__head-label">
 <span class="kt-portlet__head-icon">
 <i class="kt-font-brand flaticon2-line-chart"></i>
 </span>
-<h3 class="kt-portlet__head-title">
+<h3 class="kt-portlet__head-title" style="color: white;">
 <?php echo $auditTitle?>
 </h3>
 </div>
+   <?php if($_SESSION['user_role'] == 'auditee') {?>
+                <div class="row">
+                   
+                <div class="col-md-5" style="margin-top: 10px;"><?php if($GLOBALS['workingStatus']!="perform pending") echo "style='display:none'" ?><button class="btn btn-danger" onclick="saveAllChecklists(allClauses,true)">Draft </button> </div>
+               
+                <!-- <div class="co1-md-2"></div> -->
 
+                <div class="col-md-7" style="margin-top: 10px;"> <?php if($GLOBALS['workingStatus']!="perform pending") echo "style='display:none'" ?> <button  class="btn btn-success" data-spinner-color="#333"  onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)" >Respond</button> </div>
+       
+        </div>
+   
+            <?php }?>     
+                    
 </div>
 
 <div class="kt-portlet__body"> </div>
@@ -336,19 +348,7 @@ function tabledata($clause){
             <?php }?>
             
                
-              <?php if($_SESSION['user_role'] == 'auditee') {?>
-                <div class="row">
-          <div class="col-md-12">
-                <div class="col-md-10" style="margin-left: 78%;"><?php if($GLOBALS['workingStatus']!="perform pending") echo "style='display:none'" ?><button class="btn btn-danger" onclick="saveAllChecklists(allClauses,true)">Draft </button> </div>
-               
-                <!-- <div class="co1-md-2"></div> -->
-
-                <div class="col-md-2" style="margin-left: 85%;margin-top: -33px;"> <?php if($GLOBALS['workingStatus']!="perform pending") echo "style='display:none'" ?> <button  class="btn btn-success" data-spinner-color="#333"  onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)" >Respond</button> </div>
-              
-           </div>
-        </div>
-            <?php }?>     
-                    
+           
     <div class="table-responsive">
     <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
         <thead>

@@ -177,7 +177,7 @@ function tabledata($clause){
 <link href="./assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
-<link href="./assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+
 <link href="./assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
@@ -197,7 +197,11 @@ function tabledata($clause){
 <link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+<link href="./assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+<link href="./assets/vendors/general/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 
+   <script src="js/compliance/clauseManagement.js"></script>
+    <script src="js/audit/auditClauseManagement.js"></script>
   
   
                     
@@ -308,37 +312,33 @@ function tabledata($clause){
 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
 
 
-<div class="kt-portlet">
-<div class="kt-portlet__head kt-portlet__head--lg">
+<div class="kt-portlet" style="margin-top: -50px;">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;">
 <div class="kt-portlet__head-label">
 <span class="kt-portlet__head-icon">
 <i class="kt-font-brand flaticon2-line-chart"></i>
 </span>
-<h3 class="kt-portlet__head-title">
+<h3 class="kt-portlet__head-title" style="color: white;">
 <?php echo $auditTitle?>
 </h3>
 </div>
-
-</div>
-
-<div class="kt-portlet__body" >
-            
-
-             <?php if($_SESSION['user_role'] == 'auditor') {?>
+   <?php if($_SESSION['user_role'] == 'auditor') {?>
       
                 <div class="row">
             
-                <div class="col-md-1" style="margin-top: 20px;margin-left: 80%;"><button class="btn btn-success" data-spinner-color="#333" onclick="saveAllClauses(allClauses)" <?php if($workingStatus!="prepare pending") echo "style='display:none'" ?>>
+                <div class="col-md-6" style="margin-top: 10px;"><button class="btn btn-success" data-spinner-color="#333" onclick="saveAllClauses(allClauses)" <?php if($workingStatus!="prepare pending") echo "style='display:none'" ?>>
                 <i class="fa fa-pencil-square" aria-hidden="true"></i>Draft </button> </div>
                 <!-- <div class="co1-md-2"></div> -->
 
-                <div class="col-md-10" style="margin-left: 90%;margin-top: -35px;"> <button class="btn btn-primary" onclick="saveAndChangeAuditStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="prepare pending") echo "style='display:none'" ?>>Schedule</button> </div>
+                <div class="col-md-2" style="margin-top: 10px;"> <button class="btn btn-primary" onclick="saveAndChangeAuditStatus(allClauses,<?php echo $auditId ?>, '<?php echo $workingStatus ?>', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="prepare pending") echo "style='display:none'" ?>>Schedule</button> </div>
 
             </div>
        
             <?php }?> 
          
+</div>
 
+<div class="kt-portlet__body" >
 
   <div class="table-responsive">
     <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
@@ -406,8 +406,8 @@ include 'sidemenu.php';
 
     <!--begin:: Global Mandatory Vendors -->
 
-     <script src="js/compliance/clauseManagement.js"></script>
-    <script src="js/audit/auditClauseManagement.js"></script>
+  <!--    <script src="js/compliance/clauseManagement.js"></script>
+    <script src="js/audit/auditClauseManagement.js"></script> -->
 <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
@@ -481,9 +481,11 @@ include 'sidemenu.php';
           <script src="assets/toggleButton/bootstrap-toggle.min.js"></script>
       <script type="text/javascript" src="assets/jquery-ui-1.11.4/jquery-ui.js"></script> 
       <script src="./assets/js/demo3/scripts.bundle.js" type="text/javascript"></script>
-<!--end::Global Theme Bundle -->
-
-                    
+   <script src="./assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+                
+<script src="./assets/js/demo3/pages/crud/datatables/extensions/buttons.js" type="text/javascript"></script>
+         <script src="./assets/js/demo3/pages/crud/forms/widgets/select2.js" type="text/javascript"></script>  
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>         
             </body>
     <!-- end::Body -->
 </html>

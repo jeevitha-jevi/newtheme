@@ -189,21 +189,21 @@ CREATE PLAN
                     <input type="hidden" value="<?php echo $companyId?>" id="company">
                   </div>
                 </div>
-   <div class="col-md-10">            
+   <div class="col-md-12">            
 <label>Title</label>
-<input type="text" class="form-control" name="title" id="auditTitle">
+<input type="text" class="form-control" name="title" id="auditTitle" style="border: 1px solid #b2abab;">
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
+  <div class="col-md-12">
 <label for="exampleInputPassword1">Description</label>
-<textarea class="form-control" id="auditDesc" name="description"></textarea>
+<textarea class="form-control" id="auditDesc" name="description" style="border: 1px solid #b2abab;"></textarea>
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-5">
+  <div class="col-md-8">
 <label>Date</label>
-<div class="input-daterange input-group">
+<div class="input-daterange input-group" style="border: 1px solid #b2abab;">
 <input type="text" class="form-control datepickerClass" id="start_date">
 <div class="input-group-append">
 <span class="input-group-text"><i class="la la-ellipsis-h"></i></span>
@@ -211,7 +211,7 @@ CREATE PLAN
 <input type="text" class="form-control datepickerClass" id="end_date">
 </div>
 </div>&nbsp;&nbsp;&nbsp;
-<div class="col-xs-5">
+<div class="col-md-2">
   <label>Audit Type</label>
   <div class="">
     <?php include '../common/auditTypeDropdown.php';?>
@@ -219,38 +219,39 @@ CREATE PLAN
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
+  <div class="col-md-12" style="border: 1px solid #b2abab;">
 <label for="exampleSelect1">Compliance</label>
   <?php include'../compliance/complianceDropDown.php'; ?>
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
+  <div class="col-md-12" style="border: 1px solid #b2abab;">
 <label for="exampleSelect2">Location</label>
 <?php include'../common/locationDropDown.php'; ?>
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
+  <div class="col-md-12" style="border: 1px solid #b2abab;">
 <label for="exampleSelect3">Department</label>
 <?php include'../common/departmentDropDown.php'; ?>
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
+  <div class="col-md-12" style="border: 1px solid #b2abab;">
 <label for="exampleSelect4">Auditor</label>
 <?php include'../common/auditorDropDown.php'; ?>
 </div>
 </div>
 <div class="form-group row">
-<div class="col-md-10">
+<div class="col-md-12" style="border: 1px solid #b2abab;">
 <label for="exampleSelect5">Auditee</label>
 <?php include'../common/auditeeDropdown.php'; ?>
 </div>
 </div>
 <div class="form-group row">
-  <div class="col-md-10">
-<label>Frequency</label>
+ 
+<label class="col-3 col-form-label">Frequency:</label>
+<div class="col-9">
 <?php include'../common/auditFreqDropDown.php'; ?>
 </div>
 </div>

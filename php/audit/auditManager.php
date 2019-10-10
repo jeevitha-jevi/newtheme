@@ -174,7 +174,7 @@ public function getAllAuditsForPublish($userId, $userRole){
     }
 
     private function getAllAvlAuditsForCreate(){
-        $sql = 'SELECT a.id as auditId, a.created_date as date, concat(ucase(mid(a.title,1,1)),lcase(mid(a.title,2))) as title, compl.name as complianceName, a.audit_type as type, u.last_name as auditorName, c.name as companyName, a.status as status, compl.id as complianceId from audit a, company c, compliance compl, user u where (a.company_id = c.id and a.compliance_id = compl.id and (a.auditor = u.id or a.auditor=",")  and a.status="create" and (a.audit_freq="once" or DATE(a.start_date)<=DATE(NOW()))) ORDER BY a.id DESC';     
+        $sql = 'SELECT a.id as auditId, a.created_date as date, concat(ucase(mid(a.title,1,1)),lcase(mid(a.title,2))) as title, compl.name as complianceName, a.audit_type as type,a.start_date as Start_Date,a.end_date as End_Date, c.name as companyName, a.status as status, compl.id as complianceId from audit a, company c, compliance compl, user u where (a.company_id = c.id and a.compliance_id = compl.id and (INSTR(a.auditor,u.id)>0 or INSTR(a.auditor,7)>0 ) and a.status="create" and (a.audit_freq="once" or DATE(a.start_date)<=DATE(NOW()) or a.parent_audit=0)) and u.id=a.created_by and u.id=7 ORDER BY a.id DESC';     
         $dbOps = new DBOperations();
         return $dbOps->fetchData($sql);        
     }    

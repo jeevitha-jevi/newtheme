@@ -24,9 +24,8 @@
 <div class="form-group">
     <div class="col-md-12">
     <label >Auditee</label>        
-        <div class="input-group select2-bootstrap-prepend" >
-            
-            <select id="auditee<?php echo $clause['clauseId'] ?>" value="" name="auditeeDropDown" class="form-control">
+       
+            <select id="auditee<?php echo $clause['clauseId'] ?>" name="auditeeDropDown" class="form-control select2" multiple>
           <option></option>
              <?php foreach($allauditeess as $auditees){
             foreach($auditees as $auditee)
@@ -40,7 +39,7 @@
            
         </div>
     </div>
-</div>
+
 <!-- <script src="metronic/theme/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script> -->
 
 

@@ -7,7 +7,7 @@ var KTDatatablesExtensionButtons = function() {
 		var table = $('#kt_table_1').DataTable({
 			ordering: false,
 			responsive: true,
-			// Pagination settings
+		// Pagination settings
 			dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
 			<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
@@ -35,7 +35,7 @@ var KTDatatablesExtensionButtons = function() {
 							approved: {'title': 'approved', 'class': ' kt-badge--warning'},
 							5: {'title': 'Info', 'class': ' kt-badge--info'},
 							6: {'title': 'Danger', 'class': ' kt-badge--danger'},
-							7: {'title': 'Warning', 'class': ' kt-badge--warning'},
+							// 7: {'title': 'Warning', 'class': ' kt-badge--warning'},
 						};
 						if (typeof status[data] === 'undefined') {
 							return data;
@@ -58,7 +58,7 @@ var KTDatatablesExtensionButtons = function() {
 				},
 			],
 		});
-
+           new $.fn.dataTable.FixedHeader( table )
 	};
 
 	var initTable2 = function() {

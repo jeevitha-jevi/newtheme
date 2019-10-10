@@ -125,8 +125,8 @@ function tabledata($clause){
 
 <div id="scoringModal<?php echo $clause['clauseId'] ?>" class="modal">
 
-  <div class="modal-content">
-    <span class="close" style="width: 25px;margin-top: -12px;margin-right: -12px;height: 23px;" onclick="hideclauseComment(<?php echo $clause['clauseId'] ?>)">&times;</span>   
+  <div class="modal-content" style="margin-top: 20%;width: 20%;margin-left: 55%;">
+    <span class="close"  onclick="hideclauseComment(<?php echo $clause['clauseId'] ?>)">&times;</span>   
                 
                   <textarea class="form-control" cols="2" rows="2" id="<?php echo 'auditor_comments'.$clause['clauseId']?>" <?php if($GLOBALS['workingStatus']!="approval pending") echo 'disabled="disabled"'?> ><?php echo htmlspecialchars($auditor_comments); ?></textarea>
                   </div>
@@ -587,6 +587,8 @@ function tabledataCAPA($clause){
 <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 
    
+ <link href="assets/toggleButton/bootstrap-toggle.min.css" rel="stylesheet" type="text/css" />
+  
   
   
                     
@@ -615,16 +617,25 @@ function tabledataCAPA($clause){
 
 
 <div class="kt-portlet">
-<div class="kt-portlet__head kt-portlet__head--lg">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;">
 <div class="kt-portlet__head-label">
 <span class="kt-portlet__head-icon">
 <i class="kt-font-brand flaticon2-line-chart"></i>
 </span>
-<h3 class="kt-portlet__head-title">
-My Audits
+<h3 class="kt-portlet__head-title" style="color: white;">
+<?php echo $auditTitle?>
 </h3>
 </div>
-
+ <?php if($_SESSION['user_role'] == 'auditor') {?>
+                <div class="row">
+                  <div style="margin-top: 10px;">
+                <button class="btn btn-info mt-ladda-btn ladda-button"  onclick="saveAllChecklists(allClauses)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="Draft">
+                <i class="fa fa-pencil-square"></i>Draft </button> 
+                 <button  class="btn btn-danger mt-ladda-btn ladda-button" data-style="expand-right" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, 'returned', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="return"><i class="fa fa-undo"></i>Return </button> 
+                  <button  class="btn btn-warning mt-ladda-btn ladda-button" data-style="expand-right" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, 'approved', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="Approve"><i class="fa fa-check"></i> Approve</button> 
+               </div>
+             </div>
+            <?php }?>
 </div>
 
 <div class="kt-portlet__body">
@@ -640,16 +651,7 @@ My Audits
             <?php }?>
             
                
-       <?php if($_SESSION['user_role'] == 'auditor') {?>
-                <div class="row">
-                  <div style="margin-left: 70%;">
-                <button class="btn btn-info mt-ladda-btn ladda-button"  onclick="saveAllChecklists(allClauses)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="Draft">
-                <i class="fa fa-pencil-square"></i>Draft </button> 
-                 <button  class="btn btn-danger mt-ladda-btn ladda-button" data-style="expand-right" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, 'returned', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="return"><i class="fa fa-undo"></i>Return </button> 
-                  <button  class="btn btn-warning mt-ladda-btn ladda-button" data-style="expand-right" onclick="saveAndChangeAuditCklStatus(allClauses,<?php echo $auditId ?>, 'approved', false, <?php echo $GLOBALS['capa'] ?>)" <?php if($workingStatus!="approval pending") echo "style='display:none'" ?> title="Approve"><i class="fa fa-check"></i> Approve</button> 
-               </div>
-             </div>
-            <?php }?>
+      
             
 <?php 
  foreach($allClauses as $clauses)

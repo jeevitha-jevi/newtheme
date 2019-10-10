@@ -16,9 +16,21 @@
 					<!-- begin:: Aside -->
 					<div class="kt-aside__brand kt-grid__item  " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
+							<?php if($_SESSION['user_role']=='auditor') {?>
 							<a href="view/audit/auditDashboard.php">
 								<img src=" ./assets/media/logos/fixnix.png" alt="" width="100px" height="100px" />
 							</a>
+						<?php } ?>
+						<?php if($_SESSION['user_role']=='auditee') {?>
+							<a href="view/audit/auditDashboard.php">
+								<img src=" ./assets/media/logos/fixnix.png" alt="" width="100px" height="100px" />
+							</a>
+						<?php } ?>
+							<?php if($_SESSION['user_role']=='super_admin') {?>
+							<a href="view/common/overview.php">
+								<img src=" ./assets/media/logos/fixnix.png" alt="" width="100px" height="100px" />
+							</a>
+						<?php } ?>
 						</div>
 					</div>
 
@@ -31,17 +43,7 @@
 							<?php if($_SESSION['user_role']=='auditor'){?>
 							<ul class="kt-menu__nav ">
 								<li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-gear"></i><span class="kt-menu__link-text">Audit</span></a></li>
-								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon2-layers-1"></i><span class="kt-menu__link-text">Plan</span></a>
-									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
-										<ul class="kt-menu__subnav">
-											<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Actions</span></span></li>
-											<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/plan.php" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Add New</span></a></li>
-											<li class="kt-menu__item " aria-haspopup="true"><a href="./demo3/plan.php" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Edit</span></a></li>
-											<li class="kt-menu__item " aria-haspopup="true"><a href="./demo3/Kickoff.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Delete</span></a></li>
-											
-										</ul>
-
-									</div>
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/plan.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Plan</span></a>
 								</li>
 								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditCreateAdmin.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Kickoff</span></a>
 								</li>
@@ -65,6 +67,22 @@
 								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditReturnAdmin.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-drop"></i><span class="kt-menu__link-text">Followup</span></a></li>
 
 								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditPublished.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-analytics-2"></i><span class="kt-menu__link-text"> Reports</span></a></li>
+						
+						
+							</ul>
+						<?php } ?>
+						<?php 
+							if($_SESSION['user_role']=='super_admin') { ?>
+{
+							<ul class="kt-menu__nav ">
+								<li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true"><a href="view/common/overview.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-gear"></i><span class="kt-menu__link-text">Admin</span></a></li>
+								
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Audit</span></a>
+								</li>
+
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-drop"></i><span class="kt-menu__link-text">Risk</span></a></li>
+
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-analytics-2"></i><span class="kt-menu__link-text"> Compliance</span></a></li>
 						
 						
 							</ul>
