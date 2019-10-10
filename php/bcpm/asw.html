@@ -1,0 +1,74 @@
+<div class="container-fluid">
+<form name="userForm" ng-submit="vm.addExer()">
+	<div class="row" style="padding: 1%;">
+		<div class="panel "  style="border: 1px solid #32c5d2;">
+		  <div class="panel-heading" style="background-color: #32c5d2; color:#fff;">Review</div>
+		  <div class="panel-body">
+		  	<div class="col-md-12 col-sm-12 col-lg-12">
+		  		<!-- <h3 class="page-header"></h3> -->
+		  		<div class="form-group">
+				  <label for="usr">Number of exercises Conducted every year:</label>
+				  <input type="number" class="form-control" id="usr" ng-model="vm.bcpm_review.exercies_per_year" ng-required="true">
+				</div>
+		  	</div>
+		  	<div class="col-md-12 col-sm-12 col-lg-12">
+		  		<!-- <h3 class="page-header"></h3> -->
+		  		<div class="form-group">
+				  <label for="usr">Exercise Type</label>
+				  <input type="text" class="form-control" id="usr" ng-model="vm.bcpm_review.exercise_type" ng-required="true" special-char>
+				</div>
+		  	</div>
+		  	<div class="col-md-12 col-sm-12 col-lg-12">
+		  		<!-- <h3 class="page-header"></h3> -->
+		  		<div class="form-group">
+				  <label for="usr">Purpose</label>
+				  <input type="text" class="form-control" id="usr" ng-model="vm.bcpm_review.purpose" ng-required="true" special-char>
+				</div>
+		  	</div>
+		  	<div class="col-md-12 col-sm-12 col-lg-12">
+		  		<!-- <h3 class="page-header"></h3> -->
+		  		<div class="form-group">
+				  <label for="usr">Participants</label>
+				  <input type="text" class="form-control" id="usr" ng-model="vm.bcpm_review.participants" ng-required="true" special-char>
+				</div>
+		  	</div>
+		  	<!-- <div class="col-md-12">
+              <div class="form-group">                        
+                  <label class="control-label" for="field1">Dates: </label>
+                    <div class="controls3"> 
+                        <form role="form" autocomplete="off">
+                            <div class="entry3 input-group col-md-12">
+                                <input class="form-control" name="fields[]" type="date" style="margin-bottom:20px;" />
+                              <span class="input-group-btn">
+                                    <button class="btn btn-success btn-add" type="button"  style="margin-bottom:20px;">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>                           
+                    </div>
+              </div>
+            </div> -->
+            <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="usr">Dates:</label>
+            	<div class="form-group" ng-repeat="choice in vm.choices" style="margin:0;">
+				  <input class="form-control" type="date"  ng-model="vm.bcpm_review.review_date[$index]" name=""  id="usr" ng-required="true" placeholder="Enter date"/>
+			      <button class="remove" ng-hide="$last" ng-click="vm.removeChoice()" style="float:right;">-</button>
+				</div>
+				<button class="add" ng-click="vm.addNewChoice(ev)" style="float:right;">+</button>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12">
+            	<div class="form-group">
+				  <label for="usr">Revision Date Approver:</label>
+				  <input class="form-control" type="date"  id="usr" ng-model="vm.bcpm_review.revision_date" ng-required="true" placeholder="Enter date"/>
+				</div>
+            </div>
+		  </div>
+		  <div class="panel-footer text-center">
+		  	<button class="btn btn-circle green"  type="submit" ng-disabled="userForm.$invalid || userForm.$submitted"><i class="fa fa-spinner fa-spin" aria-hidden="true" ng-show="vm.spin"></i>Submit</button>
+		  </div>
+		</div>
+	</div>
+	</form>
+
+</div>
