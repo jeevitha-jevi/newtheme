@@ -147,14 +147,17 @@ $companyId=$id[0]['id'];
    <div class="kt-header__topbar-item dropdown kt-header__topbar-item--langs">
   
 
-           <a href="view/common/overview.php"><span class="kt-header__topbar-icon" title="profile"><i class="flaticon2-user"></i></span>
+           <a href="view/common/overview.php" style="margin-top: 15px;"><span class="kt-header__topbar-icon" title="profile"><i class="flaticon2-user"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
    
-         <a href="view/common/bulkinvite.php">
+         <a href="view/common/addadminuser.php" style="margin-top: 15px;">
            <span class="kt-header__topbar-icon" title="Invite user"><i class="flaticon-feed"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
-            <a href="view/common/project.php">
+            <a href="view/common/project.php" style="margin-top: 15px;">
            <span class="kt-header__topbar-icon" title="Project&Task"><i class="kt-menu__link-icon flaticon2-analytics-2"></i></span>
+           <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
+           <a href="view/common/timeline.php" style="margin-top: 15px;">
+           <span class="kt-header__topbar-icon" title="Timeline"><i class="flaticon-chat"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
       
        <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="true">
@@ -358,18 +361,11 @@ include '../audit/sidemenu.php';
 <script src="./assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
-<!--end:: Global Optional Vendors -->
 
-<!--begin::Global Theme Bundle(used by all pages) -->
-          
       <script src="./assets/js/demo3/scripts.bundle.js" type="text/javascript"></script>
-<!--end::Global Theme Bundle -->
 
-                    <!--begin::Page Vendors(used by this page) -->
                             <script src="./assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
-                        <!--end::Page Vendors -->
-         
-                    <!--begin::Page Scripts(used by this page) -->
+      
                             <script src="./assets/js/demo3/pages/crud/datatables/extensions/buttons.js" type="text/javascript"></script>
 
             </body>

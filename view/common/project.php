@@ -1,5 +1,59 @@
-<?php 
-require_once __DIR__.'/../header.php';
+<?php require_once __DIR__.'/../header.php';
+require_once '../../php/common/dashboard.php';
+$manager = new dashboard();
+$allUsers = $manager->getAllUsersForTicket();
+$totalusers = count($allUsers);
+$projectId = $_SESSION['user_id'];
+$allProjectList = $manager->getAllProject($projectId); 
+$allTaskList = $manager->getAllTask($projectId);
+// echo $allUsers;
+?>
+<?php require_once __DIR__.'/../header.php';
+require_once __DIR__.'/../subscription.php';
+require_once '../../php/common/dashboard.php';
+require_once '../../php/common/feedManager.php';
+require_once __DIR__.'/timelinemanager.php';
+//timeline
+$timeManager = new TimeManager();
+$users = $timeManager->users(); //user choice
+$chats = $timeManager->timeLine(); //chat retrive
+$manager = new dashboard();
+$completedTasksForUsers=$manager->getCompletedTaskForUser($_SESSION['user_id']);
+$pendingTasksForUsers=$manager->getPendingTaskForUser($_SESSION['user_id']);
+ // $allTasksForUsers=$manager->getAllTaskForUser(1);
+$allUsers = $manager->getAllUsersForTicket();
+// $userSocialMedias = $manager->getUserSocialMedias($_SESSION['user_id']);
+ $userSocialMedias = $manager->getUserSocialMedias(1);
+ $userImage = $manager->getUserImage(1);
+
+$usermail = $manager->mail($_SESSION['user_id']);
+
+$projectId = $_SESSION['user_id'];
+$getAllSupportTickets=$manager->getAllSupportTickets($projectId);
+// echo $_SESSION['user_id'];
+$feedManager=new FeedManager();
+$loggedInUser=$_SESSION['user_id'];
+$feeds=$feedManager->getFeeds($loggedInUser,$_SESSION['user_role']);
+// $feeds=$feedManager->getFeeds(1,$_SESSION['user_role']);
+error_log("feeds".print_r($feeds,true));
+error_log("feeds".print_r($getAllSupportTickets,true));
+require_once __DIR__.'/../../php/company/companyManager.php';
+$manager=new CompanyManager();
+$id=$manager->getCompanyIdForUser($_SESSION['user_id']);
+switch ($_SESSION['user_role']) {
+  case 'super_admin':
+    $feedMessage="New Compliance Library is created by";
+    $isAuditor=0;
+    break;
+  case 'auditor':
+    $feedMessage="New Audit is assigned for";
+    $isAuditor=1;
+    break;
+  default:
+    # code...
+    break;
+}
+$companyId=$id[0]['id'];
 ?>
 <!DOCTYPE html>
 
@@ -14,14 +68,9 @@ require_once __DIR__.'/../header.php';
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!--begin::Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">        <!--end::Fonts -->
-
-        
-                    <!--begin::Page Custom Styles(used by this page) -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">        <link href="./assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
                              <link href="./assets/css/demo2/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
-                        <!--end::Page Custom Styles -->
-        
-        <!--begin:: Global Mandatory Vendors -->
+
 <link href="./assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
 <!--end:: Global Mandatory Vendors -->
 
@@ -54,6 +103,8 @@ require_once __DIR__.'/../header.php';
 <link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+<link href="./assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+<link href="./assets/vendors/general/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 <!--end:: Global Optional Vendors -->
 
 <!--begin::Global Theme Styles(used by all pages) -->
@@ -66,7 +117,7 @@ require_once __DIR__.'/../header.php';
 
         <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
     </head>
-<body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" style="background-color: #e0d9d9;">
+<body  class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading" style="background-color: #e0d9d9;" onload="getAction()">
 
        
     
@@ -108,14 +159,16 @@ require_once __DIR__.'/../header.php';
            <a href="view/common/overview.php"><span class="kt-header__topbar-icon" title="profile" style="margin-top: 20px;" title="Profile"><i class="flaticon2-user"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
    
-           <a href="view/common/bulkinvite.php">
+           <a href="view/common/addadminuser.php">
            <span class="kt-header__topbar-icon" style="margin-top: 20px;" title="inviteuser"><i class="flaticon-feed"></i></span>
                    <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
                 
                  <a href="view/common/project.php">
            <span class="kt-header__topbar-icon" title="project&task" style="margin-top: 20px;"><i class="kt-menu__link-icon flaticon2-analytics-2"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
-
+  <a href="view/common/timeline.php" style="margin-top: 20px;">
+           <span class="kt-header__topbar-icon" title="Timeline"><i class="flaticon-chat"></i></span>
+           <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
        <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="true">
            <span class="kt-header__topbar-icon"><i class="flaticon2-bell-alarm-symbol"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span>
@@ -228,26 +281,35 @@ require_once __DIR__.'/../header.php';
 				<form class="kt-form" id="kt_form">
 					<!--begin: Form Wizard Step 1-->
 					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						 <div class="form-group">
+                      <input type="hidden" class="form-control" id="loggedInUser" value="<?php echo $_SESSION['user_id'] ?>">
+                      <input type="hidden" class="form-control" id="action" value="create">
+                       <!-- <input type="hidden" class="form-control" id="taskId"> -->
+                    </div>
 						<div class="kt-heading kt-heading--md">Enter your Project Info</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
 								<div class="form-group">
 									<label>Project Name</label>
-									<input type="text" class="form-control" name="pname"  value="Auditor">
+									<input type="text" class="form-control" name="pname" id="project_name">
 									
 								</div>
 								<div class="form-group">
 									<label>Description</label>
-									<input type="text" class="form-control" name="Description" line="5">
+									<input type="text" class="form-control" name="Description" id="projectDescription">
 									
 								</div>
 								<div class="row">
 									<div class="col-xl-6">
 										<div class="form-group">
-											<label>Team 1</label>
-											<input type="text" class="form-control" name="Team1" >
-                                            
-											
+											<label>Team</label>
+										  <select id="assignedto1" name="assignedtoDropDown" class="form-control select2" multiple="">
+                           <option>--Select User--</option>   
+                          <?php foreach($allUsers as $users){ ?>
+
+                          <option value="<?php echo $users['id'] ?>"><?php echo htmlspecialchars($users['last_name']) ?></option>
+                          <?php } ?>
+                        </select>
 										</div>
 									</div>
 									<div class="col-xl-6">
@@ -259,7 +321,7 @@ require_once __DIR__.'/../header.php';
 								</div>
                                 <div class="form-group">
                                     <label>Location</label>
-                                    <input type="text" class="form-control" name="Location" line="5">
+                                    <?php include'../common/locationDropDown.php'; ?>
                                     
                                 </div>
                                 <div class="form-group">
@@ -267,10 +329,15 @@ require_once __DIR__.'/../header.php';
                                     <input type="text" class="form-control" name="Audit_Role" line="5">
                                     
                                 </div>
-
-							</div>
+                                 
+							</div> 
 						</div>
+						  <div class="form-group">
+                                    <button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"  onclick="saveProject()">Save</button>
+                                </div> 
 					</div>
+                          
+                                  
 					<!--end: Form Wizard Step 1-->
 
 					
@@ -280,45 +347,55 @@ require_once __DIR__.'/../header.php';
 						<div class="kt-heading kt-heading--md">Task Info</div>
 						<div class="kt-form__section kt-form__section--first">
 							<div class="kt-wizard-v2__form">
+                  <div class="form-group">
+                      <input type="hidden" class="form-control" id="loggedInUser" value="<?php echo $_SESSION['user_id'] ?>">
+                      <input type="hidden" class="form-control" id="action">
+                       <input type="hidden" class="form-control" id="taskId">
+                    </div>
 								<div class="form-group">
+                                    <label>Project Name</label>
+                                    <?php include '../common/projectDropdown.php';?>
+                                    
+                                </div>
+                                <div class="form-group">
                                     <label>Task Name</label>
-                                    <input type="text" class="form-control" name="tname"  value="Auditor">
+                                    <input type="text" class="form-control" name="taskname" id="taskname">
                                     
                                 </div>
-                                <div class="form-group">
+                                 <div class="form-group">
                                     <label>Description</label>
-                                    <input type="text" class="form-control" name="Description" line="5">
+                                    <input type="text" class="form-control" name="Description" id="description">
                                     
                                 </div>
+                                   <div class="form-group">
+                
+                        <label for="projectname">Due Date</label>
+                        <div class="input-icon">
+                          
+                          <i class="fa fa-calendar"></i>
+                          <input type="date" class="form-control todo-taskbody-due" placeholder="Due Date..." id="duedate"> </div>
+                      </div>
+                 
+                              <div class="form-group">
+                                    <label>Team</label>
+                                  
+                                     <?php include '../common/usersDropdown.php';?>
+                                    </div>
+                               
                                 <div class="form-group">
-                                    <label>Due Date</label>
-                                    <input type="date" class="form-control" name="Duedate" >
+                                    <label>Status</label>
+                                    <select class="form-control" id="status">
+                          <option value="Pending">Pending</option>
+                          <option value="Completed">Completed</option>
+                          <option value="Testing">Testing</option>
+                          <option value="Approved">Approved</option>
+                          <option value="Rejected">Rejected</option>
+                        </select>
                                     
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="form-group">
-                                            <label>Team 1</label>
-                                            <input type="text" class="form-control" name="Team1" >
-                                            
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <div class="form-group">
-                                            <label>Team 2</label>
-                                            <input type="text" class="form-control" name="Team2" >
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Attachment</label>
-                                    <input type="text" class="form-control" name="Attachement" line="5">
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <input type="text" class="form-control" name="Status" line="5">
+                                   <input type="file" class="form-control todo-taskbody-tasktitle" id="file">
                                     
                                 </div>
 
@@ -334,12 +411,12 @@ require_once __DIR__.'/../header.php';
 						<button class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
 							Previous
 						</button>
-						<button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+						<button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit" onclick="saveTask()">
 							Submit
 						</button>
-						<button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+					<!-- 	<button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
 							Next Step
-						</button>
+						</button> -->
 					</div>
 					<!--end: Form Actions -->
 				</form>
@@ -351,6 +428,53 @@ require_once __DIR__.'/../header.php';
 </div>
 </div>
 </div>
+</div>
+
+</div>
+<div class="kt-portlet" style="width: 90%;margin-left: 150px;">
+<div class="kt-portlet__head kt-portlet__head--lg" style="background-color:#2a5aa8;">
+<div class="kt-portlet__head-label">
+<span class="kt-portlet__head-icon">
+<i class="kt-font-brand flaticon2-line-chart"></i>
+</span>
+<h3 class="kt-portlet__head-title" style="color: white;">
+Project&Task
+</h3>
+</div>
+
+</div>
+
+<div class="kt-portlet__body">
+<!--begin: Datatable -->
+<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
+<thead>
+  <tr>
+                    <th>User Id</th>
+                    <th>ProjectName</th> 
+                    <th>ProjectDescription</th>                       
+                    <th>Team</th>
+                   
+                    <th>Created_Date</th>
+                    
+                    
+  </tr>
+</thead>
+
+<tbody>
+
+</tbody>
+<?php foreach($allProjectList as $data){ ?>
+<tr>
+
+
+<td><?php echo $data['project_name'];?></td>
+<td><?php echo $data['project_description'];?></td>
+<td><?php echo $data['assigned_to'];?></td>
+<td><?php echo $data['created_date'];?></td>
+</tr>
+<?php } ?>
+</table>
+<!--end: Datatable -->
 </div>
 </div>
 </div>
@@ -366,8 +490,7 @@ include '../audit/sidemenu.php';
             var KTAppOptions = {"colors":{"state":{"brand":"#374afb","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
         </script>
         <!-- end::Global Config -->
-
-    	<!--begin:: Global Mandatory Vendors -->
+<script src="js/common/taskManagement.js"></script> 
 <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
@@ -435,15 +558,12 @@ include '../audit/sidemenu.php';
 <script src="./assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
-<!--end:: Global Optional Vendors -->
-
-<!--begin::Global Theme Bundle(used by all pages) -->
+  <script src="./assets/js/demo3/pages/crud/forms/widgets/select2.js" type="text/javascript"></script> 
     	    	   
 		    	   <script src="./assets/js/demo2/scripts.bundle.js" type="text/javascript"></script>
-				<!--end::Global Theme Bundle -->
-
-        
-                    <!--begin::Page Scripts(used by this page) -->
+	<script src="./assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+      
+                            <script src="./assets/js/demo3/pages/crud/datatables/extensions/buttons.js" type="text/javascript"></script>
                             <script src="./assets/js/demo2/pages/wizard/wizard-2.js" type="text/javascript"></script>
                         <!--end::Page Scripts -->
             </body>

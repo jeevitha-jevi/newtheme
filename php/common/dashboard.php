@@ -512,12 +512,13 @@ public function getfrequency($id)
         return $dbOps->cudData($sql, 'si', $paramArray);         
     }
     public function getAllProject($projectId){
-          $sql = 'SELECT * FROM project WHERE assigned_to=?';
+          $sql = 'SELECT * FROM project order by id desc';
         $paramArray = array();
         $paramArray[] = $projectId;        
         $dbOps = new DBOperations();
         return $dbOps->fetchData($sql, 'i', $paramArray);
     } 
+
 
    
     public function riskStatus(){
