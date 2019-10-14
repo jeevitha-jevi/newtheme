@@ -11,16 +11,16 @@ function gettasklist(projectid){
     }
      $.ajax({
         type: "POST",
-        url: "/freshgrc/php/common/task.php",
+        url: "/newtheme/php/common/task.php",
         data: projectid,
         success: function(data){                    
             $('#departmentDrop').html(data);
         }
     });
 }
-function showProjectModal(){
-    $('#todo-project-modal').modal('show');
-}
+// function showProjectModal(){
+//     $('#todo-project-modal').modal('show');
+// }
 function newTaskModal(){
     debugger
     // $('#taskname').val(" ");
@@ -72,13 +72,14 @@ function saveTask(){
     }
     $.ajax({
         type: "POST",
-        url: "/freshgrc/php/common/task.php",
+        url: "/newtheme/php/common/task.php",
         data: taskDetails
     }).done(function (data) {
         location.reload();
 });
 }
 function saveProject(){
+    debugger
     var projectDetails = {
         'action': $('#action').val(),
         'projectname': $('#project_name').val(),
@@ -87,9 +88,16 @@ function saveProject(){
     }
     $.ajax({
         type: "POST",
-        url: "/freshgrc/php/common/project.php",
+        url: "/newtheme/php/common/project.php",
         data: projectDetails
     }).done(function (data) {
+           Swal.fire({
+              title: "Project Created",
+              text: "Your Project Has Been Created",
+              type: "success",
+              closeOnConfirm: false,
+              showLoaderOnConfirm: true
+            });
         location.reload();
 });
 }

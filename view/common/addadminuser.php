@@ -59,10 +59,9 @@ $companyId=$_POST['companyId'];
 <link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
 <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-
-                    <link href="./assets/css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
-           
-        <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+ <link href="./assets/css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
+ <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+ <script src="js/superAdmin/userManagement.js"></script>
     </head>
 
  <link href="./assets/css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -111,7 +110,7 @@ $companyId=$_POST['companyId'];
            <a href="view/common/overview.php"><span class="kt-header__topbar-icon" title="profile" style="margin-top: 20px;"><i class="flaticon2-user"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
    
-           <a href="view/common/bulkinvite.php">
+           <a href="view/common/addadminuser.php">
            <span class="kt-header__topbar-icon" style="margin-top: 20px;" title="inviteuser"><i class="flaticon-feed"></i></span>
            <span class="kt-hidden kt-badge kt-badge--dot kt-badge--notify kt-badge--sm"></span></a>
               <a href="view/common/project.php">
@@ -246,18 +245,21 @@ $companyId=$_POST['companyId'];
                     </div>
                 </div>
             </a>
+             
         </div>
     </div>
-    <!--end: Form Wizard Nav -->
+ 
 
     <div class="kt-portlet">
+         <a href="view/common/bulkinvite.php"><button style="font-size:20px;border-radius: 60%;margin-left: 80%;" class="btn btn-danger"><i class="fa fa-industry"> BulkInvite</i></button></a>
         <div class="kt-portlet__body kt-portlet__body--fit">
             <div class="kt-grid">
                 <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v4__wrapper">
-                    <!--begin: Form Wizard Form-->
+                   
                     <form class="kt-form" id="kt_user_add_form">
                         <!--begin: Form Wizard Step 1-->
                         <div class="kt-wizard-v4__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+
                             <div class="kt-heading kt-heading--md">User's Profile Details:</div>
                             <div class="kt-section kt-section--first">
                                 <div class="kt-wizard-v4__form">
@@ -283,15 +285,21 @@ $companyId=$_POST['companyId'];
                                                     <div class="form-group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label">First Name</label>
                                                     <div class="col-lg-9 col-xl-9">
-                                                        <input class="form-control" type="text" value="<?php echo $row['firstName'];?>">
+                                                        <input class="form-control" type="text" id="firstName">
                                                     </div>
                                                 </div>
                                                      
-                           
+                              <div class="form-group">
+                       
+                            <input type="hidden" class="form-control" id="userId">
+                            <input type="hidden" class="form-control" id="action" value="create">
+                            <input type="hidden" class="form-control" id="companyId" value="<?php echo $companyId ?>">
+                            <input type="hidden" class="form-control" id="company" value="7">
+                        </div>
                                                 <div class="form-group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label">Last Name</label>
                                                     <div class="col-lg-9 col-xl-9">
-                                                        <input class="form-control" type="text" value="Krox">
+                                                        <input class="form-control" type="text" id="lastName">
                                                     </div>
                                                 </div>
                                                  <div class="form-group row">
@@ -299,14 +307,14 @@ $companyId=$_POST['companyId'];
                                                     <div class="col-lg-9 col-xl-9">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
-                                                            <input type="text" class="form-control" value="anna.krox@loop.com" placeholder="Email" aria-describedby="basic-addon1">
+                                                            <input type="text" class="form-control" id="email">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label">Role</label>
                                                     <div class="col-lg-9 col-xl-9">
-                                                        <input class="form-control" type="text" placeholder="Enter User Role" value="Role">
+                                                        <?php include '../common/roleMultiSelect.php';?>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -587,7 +595,7 @@ $companyId=$_POST['companyId'];
                             <div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
                                 Previous
                             </div>
-                            <div class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                            <div class="btn btn-success btn-md btn-tall btn-wide kt-font-bold " data-ktwizard-type="action-submit" id="managerUserButton" onclick="manageUser()">
                                 Submit
                             </div>
                             <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">

@@ -122,6 +122,7 @@ function getUserProfileDetailsFromModal() {
 }
 
 function manageUser() {
+    debugger
     if($('#action').val()=='update')
     {
     var userDatails = getUserDetailsFromModal();

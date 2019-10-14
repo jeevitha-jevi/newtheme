@@ -1,18 +1,18 @@
 <?php
 require_once __DIR__.'/userManager.php';
-require_once __DIR__.'/../common/resetPasswordMailManager.php';
+// require_once __DIR__.'/../common/resetPasswordMailManager.php';
 
 
 function manageUser(){
     $manager = new UserManager();
-    $resetPassManager=new resetPasswordMailManager();
+    // $resetPassManager=new resetPasswordMailManager();
     $userData = getUserDataFromRequest();
 
     switch ($userData->action){
         case 'create' :
             $id=$manager->createUserData($userData);
             echo json_encode($id);
-            $resetPassManager->sendMailToCreatedUser($userData);
+            // $resetPassManager->sendMailToCreatedUser($userData);
             break;
         case 'update' :
             $manager->updateUserData($userData);

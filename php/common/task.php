@@ -31,7 +31,7 @@
       $taskData->description = $_POST['description'];
       $taskData->duedate = $_POST['duedate'];
       $taskData->assignee = $_POST['loggedInUser'];
-      $taskData->assignedto = implode(",",$_POST['assignedto']);      
+      $taskData->assignedto =$_POST['assignedto'];      
       $taskData->attachment = $_POST['attachment']; 
       $taskData->status = $_POST['status']; 
       $taskData->taskId=$_POST['taskId']; 

@@ -456,15 +456,15 @@ require_once __DIR__.'/../../php/user/userManager.php';
 								<div class="row">
 									<div class="col-xl-6 col-md-6">
 										<div class="form-group">
-											<label>Facebook</label>
-											<i class="fa fa-facebook-f"></i>
+											
+											<i class="fab fa-facebook-f" title="Facebook" style="background-color: #3B5997;border-radius: 50%;padding:10px;color: white;"></i>&nbsp;&nbsp;<a href="https://www.facebook.com">www.facebook.com</a>
 											
 										</div>
 									</div>
 									<div class="col-xl-6 col-md-6">
 										<div class="form-group">
-											<label>Twitter</label>
-											<input type="text" class="form-control" name="loccity"  value="@fixnix">
+											
+											<i class="fab fa-twitter" title="Twitter" style="background-color: #3EA1F2;border-radius: 50%;padding:10px;color: white;"></i>&nbsp;&nbsp;<a href="https://twitter.com">www.twitter.com</a>
 											
 										</div>
 									</div>
@@ -473,21 +473,21 @@ require_once __DIR__.'/../../php/user/userManager.php';
 								<div class="row">
 									<div class="col-xl-6 col-md-6">
 										<div class="form-group">
-											<label>Phone</label>
-											<input type="text" class="form-control" name="locpostcode"  value="9715905449">
+											
+											<i class="fab fa-google" title="Twitter" style="background-color: #3EA1F2;border-radius: 50%;padding:10px;color: white;"></i>&nbsp;&nbsp;<a href="https://www.fixnix.co">www.fixnix.co</a>
 											
 										</div>
 									</div>
 									<div class="col-xl-6 col-md-6">
 										<div class="form-group">
-											<label>Website</label>
-											<input type="text" class="form-control" name="loccity"  value="www.fixnix.co">
+											<label>Phone</label>
+											<input type="text" class="form-control" name="loccity"  value="9715905449">
 											
 										</div>
 									</div>
 								</div>
 								 <div class="form-group row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">Company Logo</label>
+                                                    <label class="col-xl-3 col-lg-3 col-form-label"></label>
                                                     <div class="col-lg-9 col-xl-6">
                                                         <div class="kt-avatar kt-avatar--outline" id="kt_user_add_avatar">
                                                             <div class="kt-avatar__holder" style="background-image: url(lg.png); width: 150px;"></div>

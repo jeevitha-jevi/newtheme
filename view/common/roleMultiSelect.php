@@ -4,7 +4,6 @@
     $metaData = new MetaData();
     $allRoles = $metaData->getAllRoles();
 ?>
-    <label for="role">Roles</label>
     <select id="role" name="rolesMultiSelect" class="form-control">
     <option>--Select Role--</option>    
     <?php foreach($allRoles as $role){ ?>

@@ -262,7 +262,7 @@ USER MANAGEMENT
                     <td><?php echo $data['role'];?></td>
                     <td><?php echo $data['created_at'];?></td>
                     <td style="width:10px;"><?php echo $data['company_id']; ?></td>
-                       <td style="width:150px;"><button class="btn btn-primary"><a href="/newtheme/view/common/addadminuser.php?auditId=<?php echo $data['id']; ?>" style="color: white;">Invite</a></button>&nbsp;&nbsp;<button class="btn btn-danger"><a href="/newtheme/view/common/inviteuser.php?auditId=<?php echo $data['id']; ?>" style="color: white;">Delete</a></button></td>
+                       <td style="width:150px;"><button class="btn btn-primary"><a href="/newtheme/view/common/addadminuser.php" style="color: white;">Invite</a></button>&nbsp;&nbsp;<button class="btn btn-danger"><a href="" style="color: white;">Delete</a></button></td>
                    
                     </tr>
                   <?php } ?>

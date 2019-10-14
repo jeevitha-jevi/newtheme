@@ -24,7 +24,7 @@
       $projectData->id = $_POST['id'];      
       $projectData->projectname = $_POST['projectname'];
       $projectData->projectDescription = $_POST['projectDescription']; 
-      $projectData->assignedto = implode(",",$_POST['assignedto']);      
+      $projectData->assignedto = implode(',',$_POST['assignedto']);      
       return $projectData;
     } 
 
