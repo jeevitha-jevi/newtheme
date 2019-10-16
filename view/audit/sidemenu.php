@@ -75,8 +75,9 @@
 							if($_SESSION['user_role']=='super_admin') { ?>
 {
 							<ul class="kt-menu__nav ">
-								<li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true"><a href="view/common/overview.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-gear"></i><span class="kt-menu__link-text">Admin</span></a></li>
 								
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Regulatory Engine</span></a>
+								</li>
 								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Audit</span></a>
 								</li>
 
@@ -84,7 +85,17 @@
 
 								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-analytics-2"></i><span class="kt-menu__link-text"> Compliance</span></a></li>
 						
-						
+					           	<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Policy</span></a></li>
+					           		<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-protected"></i><span class="kt-menu__link-text">Asset</span></a>
+								</li>
+									<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-mail-1"></i><span class="kt-menu__link-text">Incident</span></a>
+								</li>
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Disaster</span></a>
+								</li>
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Bcpm</span></a>
+								</li>
+								<li class="kt-menu__item " aria-haspopup="true"><a href="view/audit/auditDashboard.php" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-graph"></i><span class="kt-menu__link-text">Board</span></a>
+								</li>
 							</ul>
 						<?php } ?>
 						</div>
